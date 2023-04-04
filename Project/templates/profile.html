@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+       body
+{
+  background-color: #f5f4f3;
+}
+</style>
+
+<div class="container my-4">
+       <h2>User Profile</h2>
+       <img src="{{request.user.avatar.url}}" alt="">
+       {{user.username}}
+       <br>
+       {% if user.bio == None %}
+              <h6>Complete your account</h6>
+       </a>
+       {% else %}
+       {{user.bio}}
+       {% endif %}
+
+       <div class="row my-4">
+              <div class="col-auto">
+                     {% include 'topic_component.html' %}
+              </div>
+
+              <div class="col" id="a_tag">
+                     {% include 'feed_component.html' %}
+              </div>
+
+              {% include 'activity_component.html' %}
+
+       </div>
+
+</div>
+{% endblock %}

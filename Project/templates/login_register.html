@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+       body
+{
+  background-color: #f5f4f3;
+}
+</style>
+
+<div class="container my-4">
+
+       {% if page == 'login' %}
+       <form action="" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                     <label for="exampleFormControlInput1" class="form-label">Email</label>
+                     <input type="email" class="form-control" name="email" id="exampleFormControlInput1">
+              </div>
+              <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" id="exampleFormControlInput1">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Login</button>
+       </form>
+       <br>
+       <p>Not have an Account ? <a href="{% url 'signup' %}">Create</a></p>
+
+       {% else %}
+
+       <form action="" method="POST">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="my-2">
+                     <label for="room_name">{{field.label}}</label><br>
+                     {{field}}
+              </div>
+              {% endfor %}
+       
+              <button type="submit" class="btn btn-primary">Create</button>
+       </form>
+
+       <p>Have an Account ?<a href="{% url 'login-page' %}">Login</a></p>
+
+       {% endif %}
+</div>
+{% endblock %}

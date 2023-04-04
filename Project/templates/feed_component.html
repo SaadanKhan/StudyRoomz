@@ -1,0 +1,53 @@
+{% load static %}
+
+<style>
+	body
+{
+  background-color: #f5f4f3;
+}
+	a
+	{
+	text-decoration: none;
+	color: black;
+	}
+	#icons
+	{
+		margin-left: 370px;
+	}
+</style>
+
+{% for d in data %}
+<div class=" my-3 p-3 shadow ">
+	<div class="col d-flex">
+		<a href="{% url 'user-profile' d.host.id %}" class="px-2">
+			<img src="{{d.host.avatar.url}}" alt="">
+		</a>
+		<a href="{% url 'user-profile' d.host.id %}">{{d.host.username}}</a>
+	<br>
+	<br>
+		<div id="icons">
+				{% if request.user == d.host %}
+				<a href="{% url 'update-room' d.id %}" class="mx-2">
+					<img src="{% static 'edit.png' %}" alt="">
+				</a>
+
+				<a href="{% url 'delete-room' d.id %}" class="mx-2">
+					<img src="{% static 'x.png' %}" alt="">
+				</a>
+				{% endif %}
+		</div>
+
+	</div>
+	
+	<div class="col">
+		<a href="{% url 'room' d.id %}">
+			<h5>
+				{{d.name}}
+			</h5>
+		</a>
+		<div>
+			{{d.topic}}
+		</div>
+	</div>
+</div>
+{% endfor %}

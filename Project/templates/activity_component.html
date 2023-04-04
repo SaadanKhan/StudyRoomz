@@ -1,0 +1,47 @@
+{% load static %}
+<style>
+  body
+{
+  background-color: #f5f4f3;
+}
+  #msg_activity
+  {
+    background-color:#ededed;
+    border-radius: 2px;
+  }
+  .cross
+  {
+    margin-left: 140px;
+  }
+</style>
+
+<div class="col-auto">
+      <h5>Recent Activities</h5>
+      {% for activity in activities %}
+      <div class="shadow p-2">
+
+        <div id="activity_del">
+
+          <img src="{{activity.user.avatar.url}}" alt="">
+          <small>
+            <a href="{% url 'user-profile' activity.user.id %}">{{activity.user.username}}</a>
+          </small>
+
+          {% if request.user == activity.user %}
+          <a href="{% url 'delete-message' activity.id %}" class="cross">
+            <img src="{% static 'small_x.png' %}" alt="">
+          </a>
+          {% endif %}
+
+        </div>
+
+
+        <small><b>Replied to : </b> {{activity.room}}</small>
+        <div id="msg_activity" class="p-1">
+          <small>{{activity.body}}</small>
+        </div>
+
+
+      </div>
+      {% endfor %}
+</div>

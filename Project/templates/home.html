@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+body
+{
+  background-color: #f5f4f3;
+}
+#btn
+{
+  margin-left: 293px;
+}
+</style>
+
+
+<div class="container my-4">
+
+  <div class="row my-4 p-3">
+    <div class="col-auto">
+      {% include 'topic_component.html' %}
+    </div>
+
+    <div class="col" id="a_tag">
+
+          <div class="d-flex">
+            <h5>Rooms Present: {{room_count}}</h5>
+            <div id="btn">
+              <a href="{% url 'create-room' %}">
+                <button class="btn btn-primary">
+                  Create Room
+                </button>
+              </a>
+            </div>
+          </div>
+
+
+          {% include 'feed_component.html' %}
+
+    </div>
+
+    {% include 'activity_component.html' %} 
+  </div>
+
+
+
+</div>
+
+{% endblock %}

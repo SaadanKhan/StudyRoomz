@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+       body
+{
+  background-color: #f5f4f3;
+}
+#btns
+{
+       margin-left: 420px;
+}
+</style>
+
+
+<div class="container my-4 p-3 d-flex">
+                     <h5>
+                            Are you sure you want to delete {{obj}} ?
+                     </h5>
+              
+              <div class="d-flex" id="btns">
+                     <!-- Sending the user to where he came from -->
+                     <a href="{{request.META.HTTP_REFERER}}">
+                            <button class="btn btn-primary">Go Back</button>
+                     </a>
+              
+                     <form action="" method="POST"  class="mx-5">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary" value="confirm">Delete</button>
+                     </form>
+              </div>
+</div>
+{% endblock %}

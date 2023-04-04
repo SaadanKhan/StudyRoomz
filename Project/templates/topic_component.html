@@ -1,0 +1,20 @@
+<div class="list-group">
+       <h5>Browse topics</h5>
+
+      <!-- Search Bar -->
+      <form class="d-flex" role="search" method="GET" action="{% url 'home' %}">
+          <input class="list-group-item list-group-item-action" type="text" placeholder="Search Topics" name="q">
+      </form>
+      <!--End Search Bar -->
+       
+
+       <a href="{% url 'home' %}" class="list-group-item list-group-item-action">
+         All
+       </a>
+
+       {% for topic in topics %}
+       <a href="{% url 'home' %}?q={{topic.name}}" class="list-group-item list-group-item-action">
+         {{topic.name}}
+       </a>
+       {% endfor %}
+</div>
